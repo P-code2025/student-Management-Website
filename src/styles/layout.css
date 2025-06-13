@@ -1,0 +1,83 @@
+ 
+@import url('./global.css');  
+@import url('./components/_header.module.css');
+@import url('./components/_sidebar.module.css');
+@import url('./components/_table.module.css');
+@import url('./components/_modal.module.css');
+
+.container {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    grid-template-rows: auto 1fr;
+    width: 100%;
+}
+
+.mainContent {
+    grid-row: 2 / 3;
+    padding: 20px;
+    background-color: #3dca9b;
+    overflow-y: auto;
+}
+
+.pageTitle {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 25px;
+}
+
+.sectionTitle {
+    font-size:20px;
+    color: #b69191;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #9e3030;
+    padding-bottom: 5px;
+    margin-top: auto;
+}
+
+.classInfoSection,
+.academicAdvisorSection,
+.studentListSection {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.infoRow {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.infoLabel {
+    font-weight: bold;
+    color: #666;
+    min-width: 150px;
+}
+
+.infoValue {
+    color: #333;
+    margin-left: 100px;
+}
+.infoColoum {
+    margin-left: 65px;
+}
+
+.advisorCard {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.advisorAvatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 15px;
+    border: 1px solid #eee;
+}
+
+.advisorName {
+    font-weight: 500;
+    color: #333;
+}
