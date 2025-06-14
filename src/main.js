@@ -46,6 +46,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 fullName: 'Đỗ Công An',
                 gender: 'Nam',
                 role: 'Thành viên'
+            },
+            {
+                id: 6,
+                avatar: '../../public/images/avatar5.jpg',
+                studentCode: 'B24DCCC03',
+                fullName: 'Đỗ Công An',
+                gender: 'Nam',
+                role: 'Thành viên'
             }
         ];
         setStudents(initialStudents);  

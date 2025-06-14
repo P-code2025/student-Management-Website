@@ -25,12 +25,12 @@
         <aside class="sidebar">
             <nav class="mainNav">
                 <ul>
-                    <li><a href="#" class="navItem active"><i class="fas fa-home navIcon"></i> Trang chủ</a></li>
+                    <li><a href="#" class="navItem"><i class="fas fa-home navIcon"></i> Trang chủ</a></li>
                     <li><a href="#" class="navItem"><i class="fas fa-newspaper navIcon"></i> Tin tức</a></li>
                     <li><a href="#" class="navItem"><i class="fas fa-user navIcon"></i> Thông tin cá nhân</a></li>
                     <li><a href="#" class="navItem"><i class="fas fa-calendar-alt navIcon"></i> Lịch</a></li>
                     <li><a href="#" class="navItem"><i class="fas fa-book navIcon"></i> Lớp tín chỉ</a></li>
-                    <li><a href="#" class="navItem"><i class="fas fa-users navIcon"></i> Lớp hành chính</a></li>
+                    <li><a href="#" class="navItem active"><i class="fas fa-users navIcon"></i> Lớp hành chính</a></li>
                 </ul>
             </nav>
         </aside>
@@ -77,10 +77,16 @@
             <section class="studentListSection">
                 <h2 class="sectionTitle">Danh sách sinh viên</h2>
                 <div class="studentListHeader">
+                    <div>
                     <span class="totalStudents">Tổng số: <span id="totalStudentsCount">0</span></span>
                     <button class="addNewStudentButton" id="addNewStudentButton">Thêm sinh viên</button>
+                    </div>
+                    <div class="searchFilterContainer">
+                        <input type="text" id="searchInput" placeholder="Tìm kiếm theo mã sinh viên...">
+                        <button id="searchButton" class="searchButton"><i class="fas fa-search"></i> Tìm kiếm</button>
+                    </div>
                 </div>
-
+                
                 <table class="studentTable">
                     <thead>
                         <tr>
