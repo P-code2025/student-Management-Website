@@ -1,0 +1,49 @@
+/* Styles for the Profile Page */
+.profileCard {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    max-width: 700px;
+    margin: 0 auto; /* Center the card */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: flex-start; /* Align items to the top */
+    gap: 30px; /* Space between avatar and info */
+}
+
+.profileAvatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #eee;
+}
+
+.profileInfo {
+    flex-grow: 1; /* Take up remaining space */
+}
+
+.profileName {
+    font-size: 26px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.profileInfoRow {
+    display: flex;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.profileInfoLabel {
+    font-weight: 500;
+    color: #666;
+    min-width: 120px; /* Fixed width for labels */
+}
+
+.profileInfoValue {
+    color: #333;
+}

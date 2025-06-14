@@ -1,9 +1,13 @@
- 
 @import url('./global.css');  
 @import url('./components/_header.module.css');
 @import url('./components/_sidebar.module.css');
 @import url('./components/_table.module.css');
 @import url('./components/_modal.module.css');
+@import url('./components/_profile.module.css'); /* ADD THIS LINE */
+@import url('./components/_news.module.css');
+@import url('./components/_courses.module.css'); /* ADD THIS LINE */
+@import url('./components/_calendar.module.css'); /* ADD THIS LINE */
+
 
 .container {
     display: grid;
@@ -11,14 +15,15 @@
     grid-template-rows: auto 1fr;
     width: 100%;
 }
-
 .mainContent {
     grid-row: 2 / 3;
     padding: 20px;
-    background-color: #3dca9b;
+    background-color: #3dca9b; /* This line provides the green background */
     overflow-y: auto;
 }
+/* ... a-z ... the rest of the file remains the same ... a-z ... */
 
+/* Styling for Page and Section Titles */
 .pageTitle {
     font-size: 28px;
     color: #333;
@@ -31,18 +36,19 @@
     margin-bottom: 15px;
     border-bottom: 1px solid #9e3030;
     padding-bottom: 5px;
-    margin-top: auto;
 }
 
+/* KEY FIX: Restore white background and spacing for content sections */
 .classInfoSection,
 .academicAdvisorSection,
 .studentListSection {
-    background-color: #fff;
+    background-color: #fff; /* Trả lại nền trắng cho các ô thông tin */
     padding: 20px;
     border-radius: 8px;
-    margin-bottom: 20px;
+    margin-bottom: 20px; /* Tạo khoảng cách xanh lá giữa các ô */
 }
 
+/* Styling for info rows inside the sections */
 .infoRow {
     display: flex;
     margin-bottom: 10px;
@@ -62,6 +68,7 @@
     margin-left: 65px;
 }
 
+/* Styling for advisor cards */
 .advisorCard {
     display: flex;
     align-items: center;

@@ -1,30 +1,33 @@
-
 import { getStudents, setStudents } from '../utils/helpers.js';
 import { openModal } from './studentModal.js';
 
-const studentTableBody = document.getElementById('studentTableBody');
-const totalStudentsCount = document.getElementById('totalStudentsCount');
-const addNewStudentButton = document.getElementById('addNewStudentButton');
-
-const searchInput = document.getElementById('searchInput');
-const searchButton = document.getElementById('searchButton'); 
+// MOVED: We will no longer get elements here. We will get them inside the functions.
 
 export const renderStudents = (searchTerm = '') => {
-    
-    let students = getStudents(); 
+    // MOVED: Get elements at the time the function is called, ensuring they exist.
+    const studentTableBody = document.getElementById('studentTableBody');
+    const totalStudentsCount = document.getElementById('totalStudentsCount');
+    const searchInput = document.getElementById('searchInput');
 
-    const lowerCaseSearchTerm = searchTerm.toLowerCase().trim();  
-    if (lowerCaseSearchTerm) {  
+    // If any of these elements don't exist, stop the function to prevent errors.
+    if (!studentTableBody || !totalStudentsCount) {
+        console.error("Student table elements not found in the DOM!");
+        return;
+    }
+
+    let students = getStudents();
+
+    const lowerCaseSearchTerm = searchTerm.toLowerCase().trim();
+    if (lowerCaseSearchTerm) {
         students = students.filter(student =>
-            
-            student.studentCode.toLowerCase().startsWith(lowerCaseSearchTerm) 
+            student.studentCode.toLowerCase().includes(lowerCaseSearchTerm) ||
+            student.fullName.toLowerCase().includes(lowerCaseSearchTerm)
         );
     }
- 
+
     studentTableBody.innerHTML = '';
 
     if (students.length === 0) {
- 
         const noDataRow = studentTableBody.insertRow();
         noDataRow.innerHTML = `<td colspan="7" style="text-align: center; padding: 20px;">Không có dữ liệu sinh viên nào phù hợp.</td>`;
     } else {
@@ -45,28 +48,40 @@ export const renderStudents = (searchTerm = '') => {
         });
     }
 
-
     totalStudentsCount.textContent = students.length;
 };
 
 const handleDeleteStudent = (id) => {
+    // MOVED: Get searchInput here as well to get its current value.
+    const searchInput = document.getElementById('searchInput');
     if (confirm('Bạn có chắc chắn muốn xóa sinh viên này không?')) {
         let students = getStudents();
         students = students.filter(student => student.id !== id);
         setStudents(students);
-        renderStudents(searchInput.value);
+        renderStudents(searchInput ? searchInput.value : '');
     }
 };
 
-
 export const initializeStudentTableEvents = () => {
+    // MOVED: Get all elements here right before adding event listeners.
+    const addNewStudentButton = document.getElementById('addNewStudentButton');
+    const studentTableBody = document.getElementById('studentTableBody');
+    const searchInput = document.getElementById('searchInput');
+    const searchButton = document.getElementById('searchButton');
+
+    // If any of these elements don't exist, stop the function.
+    if (!addNewStudentButton || !studentTableBody || !searchInput || !searchButton) {
+        return;
+    }
 
     addNewStudentButton.addEventListener('click', () => {
         openModal('add');
     });
+
     studentTableBody.addEventListener('click', (event) => {
         const target = event.target;
-        const studentId = parseInt(target.dataset.id);
+        // The dataset.id will be a string, so we parse it to an integer for strict comparison.
+        const studentId = parseInt(target.dataset.id, 10);
 
         if (target.classList.contains('editButton')) {
             const students = getStudents();
@@ -80,8 +95,8 @@ export const initializeStudentTableEvents = () => {
     });
 
     searchButton.addEventListener('click', () => {
-        const searchTerm = searchInput.value; 
-        renderStudents(searchTerm);  
+        const searchTerm = searchInput.value;
+        renderStudents(searchTerm);
     });
 
     searchInput.addEventListener('input', () => {
@@ -93,7 +108,7 @@ export const initializeStudentTableEvents = () => {
         if (event.key === 'Enter') {
             const searchTerm = searchInput.value;
             renderStudents(searchTerm);
-            event.preventDefault();  
+            event.preventDefault();
         }
     });
 };

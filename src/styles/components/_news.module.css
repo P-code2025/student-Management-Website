@@ -1,0 +1,10 @@
+.newsHeader { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
+.addNewNewsButton { background-color: #007bff; color: white; border: none; padding: 10px 18px; border-radius: 5px; cursor: pointer; font-size: 14px; transition: background-color 0.3s ease; }
+.addNewNewsButton:hover { background-color: #0056b3; }
+.newsListContainer { display: flex; flex-direction: column; gap: 20px; }
+.newsCard { background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.08); position: relative; }
+.newsCardTitle { font-size: 18px; font-weight: bold; color: #333; margin-bottom: 10px; }
+.newsCardContent { font-size: 15px; color: #555; line-height: 1.6; }
+.newsCardDate { font-size: 12px; color: #999; margin-top: 15px; }
+.deleteNewsButton { position: absolute; top: 15px; right: 15px; background: none; border: none; color: #aaa; font-size: 20px; cursor: pointer; transition: color 0.3s ease; }
+.deleteNewsButton:hover { color: #dc3545; }

@@ -1,0 +1,54 @@
+/* Styles for the Credit Classes Page */
+.coursesContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Create two equal columns */
+    gap: 30px; /* Space between the two columns */
+}
+
+.semesterSection {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.semesterTitle {
+    font-size: 22px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 10px;
+}
+
+.courseList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.courseItem {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.courseItem:last-child {
+    border-bottom: none;
+}
+
+.courseName {
+    font-size: 16px;
+    color: #444;
+}
+
+.courseCredits {
+    font-size: 14px;
+    color: #fff;
+    background-color: #28a745;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 500;
+}
