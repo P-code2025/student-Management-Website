@@ -1,13 +1,13 @@
-import { renderStudents, initializeStudentTableEvents } from './scripts/components/studentTable.js';
-import { initializeStudentModal } from './scripts/components/studentModal.js';
+// Xóa các import không còn cần thiết ở đây
 import { getStudents, setStudents } from './scripts/utils/helpers.js';
 import { handleActiveNavItem } from './scripts/app.js'; 
 
 document.addEventListener('DOMContentLoaded', () => {
-
+    // Logic khởi tạo dữ liệu sinh viên mẫu vẫn giữ nguyên
     if (!getStudents() || getStudents().length === 0) {
         const initialStudents = [
-            {
+            // ... (dữ liệu sinh viên mẫu của bạn) ...
+             {
                 id: 1,
                 avatar: '../../public/images/avatar1.jpg',
                 studentCode: 'B24DCCC11',
@@ -59,8 +59,6 @@ document.addEventListener('DOMContentLoaded', () => {
         setStudents(initialStudents);  
     }
 
-    renderStudents();  
-    initializeStudentTableEvents();  
-    initializeStudentModal();  
+    // Chỉ cần gọi hàm này, nó sẽ xử lý cả việc hiển thị trang ban đầu và các click sau đó
     handleActiveNavItem();
 });
