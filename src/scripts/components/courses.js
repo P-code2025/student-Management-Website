@@ -1,4 +1,5 @@
 import { getCourses, setCourses } from '../utils/helpers.js';
+
 /**
  * Render danh sách các lớp tín chỉ vào bảng.
  */
