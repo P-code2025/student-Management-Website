@@ -48,13 +48,45 @@ const getCalendarPageHTML = () => {
     `;
 };
 
+// File: src/main.js
+
 const getCreditClassesPageHTML = () => {
     return `
-        <div class="newsHeader">
-            <h1 class="pageTitle">Lớp tín chỉ</h1>
-            <button class="addNewNewsButton" id="addCourseButton">Thêm môn học</button>
-        </div>
-        <div class="coursesContainer" id="coursesContainer"></div>
+        <section class="credit-class-section">
+            <div class="page-header">
+                <h1 class="pageTitle">Lớp tín chỉ</h1>
+                <div class="header-actions">
+                    <select id="semesterFilter" class="semester-filter">
+                        <option value="1">Học kỳ 1 năm học 2024-2025</option>
+                        <option value="2" selected>Học kỳ 2 năm học 2024-2025</option>
+                    </select>
+                    <button id="reloadButton" class="action-button">
+                        <i class="fas fa-sync-alt"></i> Tải lại
+                    </button>
+                </div>
+            </div>
+            <div class="table-container">
+                <div class="table-info">
+                    <span>Tổng số: <span id="totalCoursesCount">0</span></span>
+                </div>
+                <table class="course-table">
+                    <thead>
+                        <tr>
+                            <th>TT</th>
+                            <th>Tên lớp học</th>
+                            <th>Mã HP</th>
+                            <th>Tên học phần</th>
+                            <th>STC</th>
+                            <th>Giảng viên</th>
+                            <th>Lịch học</th>
+                        </tr>
+                    </thead>
+                    <tbody id="courseTableBody">
+                        <!-- Dữ liệu sẽ được render vào đây bằng JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
     `;
 };
 
