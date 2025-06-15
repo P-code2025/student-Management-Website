@@ -1,3 +1,5 @@
+// File: src/main.js (Phiên bản đầy đủ và đã sửa lỗi)
+
 import { getStudents, setStudents, getCourses, setCourses, getLecturerData, setLecturerData } from './scripts/utils/helpers.js';
 import { initializeStudentModal } from './scripts/components/studentModal.js';
 import { renderStudents, initializeStudentTableEvents } from './scripts/components/studentTable.js';
@@ -10,7 +12,7 @@ import { initializeTheme } from './scripts/components/theme-switcher.js';
 
 const mainContent = document.querySelector('.mainContent');
 
-// --- HTML TEMPLATE FUNCTIONS ---
+// --- CÁC HÀM TẠO HTML (CÓ THỂ BẠN ĐÃ VÔ TÌNH XÓA MẤT PHẦN NÀY) ---
 
 const getHomePageHTML = () => {
     return `
@@ -35,7 +37,7 @@ const getProfilePageHTML = () => {
     return `
         <h1 class="pageTitle">Thông tin cá nhân</h1>
         <section class="profileCard" id="profileContainer">
-            </section>
+        </section>
     `;
 };
 
@@ -48,36 +50,23 @@ const getCalendarPageHTML = () => {
     `;
 };
 
-// Trong file: src/main.js
-
 const getCreditClassesPageHTML = () => {
     return `
         <section class="credit-class-section">
-            <div class="page-header">
-                <h1 class="pageTitle">Lớp tín chỉ</h1>
-                <div class="header-actions">
+            <h1 class="pageTitle">Lớp tín chỉ</h1>
+            <div class="table-container">
+                <div class="table-info">
                     <select id="semesterFilter" class="semester-filter">
-                        <option value="all">Tất cả học kỳ</option>
                         <option value="1">Học kỳ 1 năm học 2024-2025</option>
                         <option value="2" selected>Học kỳ 2 năm học 2024-2025</option>
                     </select>
-                    <button id="reloadButton" class="action-button">
-                        <i class="fas fa-sync-alt"></i> Tải lại
-                    </button>
-                    <div class="search-container">
-                        <input type="text" id="courseSearchInput" placeholder="Tìm kiếm môn học...">
-                        <i class="fas fa-search search-icon"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="table-container">
-                <div class="table-info">
-                    <span>Tổng số: <span id="totalCoursesCount">0</span></span>
+                    <span class="total-count-display">Tổng số: <span id="totalCoursesCount">0</span></span>
                 </div>
                 <table class="course-table">
                     <thead>
                         <tr>
                             <th>TT</th>
+                            <th>Tên lớp học</th>
                             <th>Mã HP</th>
                             <th>Tên học phần</th>
                             <th>STC</th>
@@ -85,8 +74,7 @@ const getCreditClassesPageHTML = () => {
                             <th>Lịch học</th>
                         </tr>
                     </thead>
-                    <tbody id="courseTableBody">
-                        </tbody>
+                    <tbody id="courseTableBody"></tbody>
                 </table>
             </div>
         </section>
@@ -163,14 +151,6 @@ const getAdminClassHTML = () => {
 
 // --- ROUTER & APP LOGIC ---
 const navigateTo = (page) => {
-    const navItems = document.querySelectorAll('.navItem');
-    navItems.forEach(item => {
-        item.classList.remove('active');
-        if (item.dataset.page === page) {
-            item.classList.add('active');
-        }
-    });
-
     mainContent.innerHTML = '';
     switch (page) {
         case 'Trang chủ':
@@ -205,9 +185,13 @@ const navigateTo = (page) => {
 const handleNavigation = () => {
     const navItems = document.querySelectorAll('.navItem');
     navItems.forEach(item => {
-        // Thay đổi event listener để nó hoạt động đúng với cấu trúc <li><a>...</a></li>
         item.addEventListener('click', function(event) {
             event.preventDefault();
+
+            // Handle active class
+            navItems.forEach(nav => nav.classList.remove('active'));
+            this.classList.add('active');
+
             navigateTo(this.dataset.page);
         });
     });
@@ -236,10 +220,8 @@ const initializeResponsive = () => {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-    // --- NẠP DỮ LIỆU BAN ĐẦU (DATA SEEDING) ---
-    // Đảm bảo dữ liệu luôn được nạp nếu không có hoặc bị rỗng
-    const existingStudents = getStudents();
-    if (!existingStudents || existingStudents.length === 0) {
+    // Seed initial data if necessary
+    if (!getStudents() || getStudents().length === 0) {
         const initialStudents = [
             { id: 1, avatar: '../../public/images/avatar1.jpg', studentCode: 'B24DCCC11', fullName: 'Mông Đức Hiếu', gender: 'Nam', role: 'Thành viên' },
             { id: 2, avatar: '../../public/images/avatar2.jpg', studentCode: 'B24DCCC01', fullName: 'Nguyễn Đức Dũng', gender: 'Nam', role: 'Thành viên' },
@@ -250,8 +232,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setStudents(initialStudents);
     }
 
-    const existingCourses = getCourses();
-    if (!existingCourses || existingCourses.length === 0) {
+    if (!getCourses() || getCourses().length === 0) {
         const initialCourses = [
             { id: 1, name: 'Giải tích 1', credits: 3, semester: 1 },
             { id: 2, name: 'Lập trình C++', credits: 3, semester: 1 },
@@ -260,7 +241,7 @@ document.addEventListener('DOMContentLoaded', () => {
             { id: 5, name: 'Pháp luật đại cương', credits: 2, semester: 1 },
             { id: 6, name: 'Giải tích 2', credits: 3, semester: 2 },
             { id: 7, name: 'Cấu trúc dữ liệu và giải thuật', credits: 3, semester: 2 },
-            { id: 8, name: 'Tiếng Anh A2', credits: 4, semester: 2 },
+            { id: 8, 'name': 'Tiếng Anh A2', credits: 4, semester: 2 },
             { id: 9, name: 'Kinh tế chính trị', credits: 2, semester: 2 },
             { id: 10, name: 'Vật lý đại cương', credits: 3, semester: 2 }
         ];
@@ -269,14 +250,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!getLecturerData()) {
         const initialLecturerData = {
-            fullName: 'Nguyễn Minh Chiến',
-            employeeId: 'GV001',
-            dateOfBirth: '10-10-1985',
-            gender: 'Nam',
-            department: 'Công nghệ thông tin',
-            email: 'chiennm@slink.edu.vn',
-            phone: '0987-654-321',
-            avatar: '../../public/images/nguyen-minh-chien.jpg'
+            fullName: 'Trần Minh Hiếu', employeeId: 'GV001', dateOfBirth: '10-10-1985',
+            gender: 'Nam', department: 'Công nghệ thông tin', email: 'hieutm@slink.edu.vn',
+            phone: '0987-654-321', avatar: '../../public/images/avatar.jpg'
         };
         setLecturerData(initialLecturerData);
     }
