@@ -2,6 +2,10 @@ import { getLecturerData, setLecturerData } from '../utils/helpers.js';
 
 let profileContainer;
 
+/**
+ * Hiển thị thông tin cá nhân của giảng viên ra màn hình.
+ * @param {boolean} isEditing - Chế độ hiển thị: true = sửa, false = xem.
+ */
 const renderProfile = (isEditing = false) => {
     if (!profileContainer) return;
 
@@ -56,8 +60,12 @@ const renderProfile = (isEditing = false) => {
     profileContainer.innerHTML = contentHtml;
 };
 
+/**
+ * Xử lý sự kiện lưu thông tin sau khi sửa.
+ */
 const handleSave = (event) => {
     event.preventDefault();
+    const currentData = getLecturerData();
     const updatedData = {
         fullName: document.getElementById('fullNameInput').value,
         employeeId: document.getElementById('employeeIdInput').value,
@@ -66,12 +74,15 @@ const handleSave = (event) => {
         department: document.getElementById('departmentInput').value,
         email: document.getElementById('emailInput').value,
         phone: document.getElementById('phoneInput').value,
-        avatar: getLecturerData().avatar // Giữ lại avatar cũ
+        avatar: currentData.avatar // Giữ lại avatar cũ, không cho sửa ở đây
     };
     setLecturerData(updatedData);
     renderProfile(false); // Chuyển về chế độ xem
 };
 
+/**
+ * Khởi tạo trang cá nhân và gán các sự kiện.
+ */
 export const initializeProfilePage = () => {
     profileContainer = document.getElementById('profileContainer');
     

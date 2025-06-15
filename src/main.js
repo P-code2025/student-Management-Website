@@ -250,9 +250,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!getLecturerData()) {
         const initialLecturerData = {
-            fullName: 'Trần Minh Hiếu', employeeId: 'GV001', dateOfBirth: '10-10-1985',
-            gender: 'Nam', department: 'Công nghệ thông tin', email: 'hieutm@slink.edu.vn',
-            phone: '0987-654-321', avatar: '../../public/images/avatar.jpg'
+            fullName: 'Nguyễn Minh Chiến', employeeId: 'GV001', dateOfBirth: '10-10-1985',
+            gender: 'Nam', department: 'Công nghệ thông tin', email: 'chiendeptrai@slink.edu.vn',
+            phone: '0987-654-321', avatar: '../../public/images/nguyen-minh-chien.jpg'
         };
         setLecturerData(initialLecturerData);
     }

@@ -1,14 +1,14 @@
 /* Styles for the Profile Page */
 .profileCard {
-    background-color: #fff;
+    background-color: var(--section-background);
     padding: 30px;
     border-radius: 8px;
     max-width: 700px;
-    margin: 0 auto; /* Center the card */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
     display: flex;
-    align-items: flex-start; /* Align items to the top */
-    gap: 30px; /* Space between avatar and info */
+    align-items: flex-start;
+    gap: 30px;
+    /* margin is handled by layout.css */
 }
 
 .profileAvatar {
@@ -17,45 +17,93 @@
     border-radius: 50%;
     object-fit: cover;
     border: 3px solid #eee;
+    flex-shrink: 0; /* Ngăn avatar bị co lại */
 }
 
 .profileInfo {
-    flex-grow: 1; /* Take up remaining space */
+    flex-grow: 1; /* Chiếm hết không gian còn lại */
 }
 
 .profileName {
     font-size: 26px;
     font-weight: bold;
-    color: #333;
-    margin-bottom: 10px;
+    color: var(--text-primary-color);
+    margin-top: 0;
+    margin-bottom: 15px;
     border-bottom: 1px solid #eee;
-    padding-bottom: 10px;
+    padding-bottom: 15px;
 }
 
 .profileInfoRow {
     display: flex;
+    flex-wrap: wrap; /* Cho phép xuống dòng nếu cần */
     margin-bottom: 15px;
     font-size: 16px;
+    gap: 5px 15px;
 }
 
 .profileInfoLabel {
     font-weight: 500;
-    color: #666;
-    min-width: 120px; /* Fixed width for labels */
+    color: var(--text-secondary-color);
+    min-width: 120px;
 }
 
 .profileInfoValue {
-    color: #333;
+    color: var(--text-primary-color);
 }
 
-/* Thêm vào _profile.module.css */
-.profileActions { margin-top: 20px; }
-.profileActions .actionButton { 
-    /* ... copy style từ file news.js nếu muốn ... */
-    background: none;
-    border: 1px solid #ccc;
-    padding: 4px 8px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 12px;
+.profileActions {
+    margin-top: 25px;
+}
+
+/* ============================================== */
+/* ====== BỔ SUNG PHẦN RESPONSIVE DƯỚI ĐÂY ====== */
+/* ============================================== */
+
+/* --- Cho máy tính bảng và các thiết bị nhỏ hơn (<= 768px) --- */
+@media (max-width: 768px) {
+    .profileCard {
+        /* Xếp avatar và thông tin theo chiều dọc */
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+        padding: 20px;
+    }
+
+    .profileInfo {
+        width: 100%;
+    }
+
+    .profileName {
+        text-align: center; /* Căn giữa tên khi ở chế độ dọc */
+        font-size: 24px;
+    }
+}
+
+/* --- Cho điện thoại di động (<= 480px) --- */
+@media (max-width: 480px) {
+    .profileAvatar {
+        width: 120px;
+        height: 120px;
+    }
+
+    .profileName {
+        font-size: 22px;
+    }
+
+    .profileInfoRow {
+        /* Chuyển thành bố cục block để nhãn và giá trị nằm trên 2 dòng */
+        display: block; 
+        font-size: 15px;
+        margin-bottom: 12px;
+    }
+
+    .profileInfoLabel {
+        /* Hiển thị nhãn như một dòng riêng, in đậm */
+        display: block; 
+        min-width: 0;
+        font-weight: bold;
+        color: #444;
+        margin-bottom: 3px;
+    }
 }

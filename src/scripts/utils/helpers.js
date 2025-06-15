@@ -53,14 +53,3 @@ export const getEvents = () => {
 export const setEvents = (events) => {
     localStorage.setItem(CALENDAR_EVENTS_KEY, JSON.stringify(events));
 };
-
-const ANNOUNCEMENTS_STORAGE_KEY = 'announcementsData';
-
-export const getAnnouncements = () => {
-    const dataJson = localStorage.getItem(ANNOUNCEMENTS_STORAGE_KEY);
-    return dataJson ? JSON.parse(dataJson) : [];
-};
-
-export const setAnnouncements = (data) => {
-    localStorage.setItem(ANNOUNCEMENTS_STORAGE_KEY, JSON.stringify(data));
-};
