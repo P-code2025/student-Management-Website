@@ -1,17 +1,17 @@
+/* src/styles/components/_table.module.css */
 
 .studentListHeader {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px; /* Tăng khoảng cách dưới một chút cho đẹp hơn */
-    flex-wrap: wrap; /* Cho phép các phần tử xuống dòng trên màn hình nhỏ */
-    gap: 15px; /* Khoảng cách giữa các phần tử trong header */
+    margin-bottom: 20px;
+    flex-wrap: wrap; 
+    gap: 15px;
 }
 
 .totalStudents {
     font-weight: bold;
     color: var(--text-primary-color);
-    /* Đảm bảo nó không bị co lại trên màn hình nhỏ */
     flex-shrink: 0;
 }
 
@@ -24,9 +24,7 @@
     cursor: pointer;
     font-size: 14px;
     transition: background-color 0.5s ease;
-    /* Đảm bảo nó không bị co lại trên màn hình nhỏ */
     flex-shrink: 0;
-    /* Loại bỏ margin-left nếu có từ quy tắc trước đây, để gap xử lý */
     margin-left: 0;
 }
 
@@ -34,15 +32,12 @@
     background-color: var(--button-success-hover-bg);
 }
 
-/* THÊM CÁC STYLES MỚI CHO TÌM KIẾM VÀ LỌC */
 .searchFilterContainer {
     display: flex;
-    gap: 10px; /* Khoảng cách giữa ô input và nút tìm kiếm */
+    gap: 10px;
     align-items: center;
-    /* Chúng ta không cần flex-grow ở đây nữa nếu muốn nó nhỏ gọn */
-    /* flex-grow: 1; */ /* Bỏ hoặc comment dòng này */
-    flex-shrink: 0; /* Đảm bảo nó không bị co lại quá mức */
-    min-width: 250px; /* Đảm bảo cụm tìm kiếm không quá nhỏ */
+    flex-shrink: 0;
+    min-width: 250px;
 }
 
 #searchInput {
@@ -50,16 +45,7 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
-    /* Không cần flex-grow nữa */
-    /* flex-grow: 1; */ /* Bỏ hoặc comment dòng này */
-
-    /* Đặt chiều rộng cố định cho ô input */
-    width: 200px; /* Thử giá trị này, bạn có thể điều chỉnh */
-    
-    /* Đặt chiều rộng tối đa để nó không quá dài nếu có nhiều không gian */
-    /* max-width: 250px; */ /* Tùy chọn: nếu bạn muốn nó linh hoạt hơn một chút nhưng vẫn có giới hạn */
-
-    min-width: 100px; /* Đảm bảo ô input không quá nhỏ khi co lại (nếu dùng max-width) */
+    width: 200px; 
     box-sizing: border-box;
 }
 
@@ -79,24 +65,27 @@
     background-color: var(--button-primary-hover-bg);
 }
 
-
-/* CÁC STYLES CÒN LẠI VẪN GIỮ NGUYÊN */
 .studentTable {
     width: 100%;
     border-collapse: collapse;
     margin-top: 15px;
+    /* THÊM DÒNG NÀY: Đặt chiều rộng tối thiểu cho bảng. 
+       Nếu màn hình nhỏ hơn giá trị này, thanh cuộn sẽ xuất hiện. */
+    min-width: 800px;
 }
 
 .studentTable th,
 .studentTable td {
-    border: 1px solid #ddd;
-    padding: 10px;
+    border: 1px solid #e8e8e8;
+    padding: 12px 16px;
     text-align: left;
+    /* THÊM DÒNG NÀY: Ngăn không cho chữ bên trong ô bị xuống dòng. */
+    white-space: nowrap;
 }
 
 .studentTable th {
-    background-color: #f2f2f2;
-    font-weight: bold;
+    background-color: #fafafa;
+    font-weight: 600;
     color: var(--text-primary-color);
 }
 
@@ -105,7 +94,7 @@
 }
 
 .studentTable tr:hover {
-    background-color: #e38383; /* Màu hover này có vẻ hơi chói, bạn có thể cân nhắc đổi */
+    background-color: #f0f8ff;
 }
 
 .studentAvatarTable {
@@ -113,13 +102,13 @@
     height: 35px;
     border-radius: 50%;
     object-fit: cover;
+    vertical-align: middle; /* Căn giữa avatar với chữ */
 }
 
 .actionButtons {
     display: flex;
     gap: 10px;
 }
-
 
 .editButton,
 .deleteButton {
@@ -140,9 +129,9 @@
 }
 
 .deleteButton {
-    background-color: red;
+    background-color: var(--button-danger-bg);
 }
 
 .deleteButton:hover {
-    background-color: #b815dd;
+    background-color: var(--button-danger-hover-bg);
 }

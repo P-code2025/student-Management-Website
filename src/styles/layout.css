@@ -1,100 +1,67 @@
+/* Import all component styles */
 @import url('./global.css');  
 @import url('./components/_header.module.css');
 @import url('./components/_sidebar.module.css');
 @import url('./components/_table.module.css');
 @import url('./components/_modal.module.css');
-@import url('./components/_profile.module.css'); /* ADD THIS LINE */
+@import url('./components/_profile.module.css');
 @import url('./components/_news.module.css');
-@import url('./components/_courses.module.css'); /* ADD THIS LINE */
-@import url('./components/_generic-modal.module.css'); /* ADD THIS LINE */
+@import url('./components/_courses.module.css');
+@import url('./components/_generic-modal.module.css');
 @import url('./components/_buttons.module.css');
-@import url('./components/_calendar.module.css'); /* ADD THIS LINE */
+@import url('./components/_calendar.module.css');
 @import url('./responsive.css');
 
-
 .container {
-    display: grid;
-    grid-template-columns: 250px 1fr;
-    grid-template-rows: auto 1fr;
-    width: 100%;
-    min-width: 400px; /* **THÊM DÒNG NÀY** */
-    /* Xóa overflow-x: hidden; ở đây nếu có */
+    margin-left: 250px;
+    transition: margin-left 0.3s ease-in-out;
 }
+
 .mainContent {
-    grid-column: 2 / 3;
-    grid-row: 2 / 3;
-    padding: 20px;
-    background-color: var(--main-content-background); /* This line provides the green background */
-    overflow-y: auto;
+    /* SỬA LỖI Ở ĐÂY */
+    box-sizing: border-box; /* Đảm bảo padding không làm tăng kích thước tổng */
+    min-height: 100vh;
+    background-color: var(--main-content-background);
+    
+    /* Dùng padding để đẩy nội dung xuống dưới header cố định */
+    /* 84px = 60px (chiều cao header) + 24px (khoảng đệm mong muốn) */
+    padding: 84px 24px 24px 24px; 
 }
-/* ... a-z ... the rest of the file remains the same ... a-z ... */
+
+/* Các section trong main content */
 .mainContent > section,
-.mainContent > div {
-    width: 100%;
-    box-sizing: border-box;
+.mainContent > div:not(.modal) {
+    background-color: var(--section-background);
+    padding: 24px;
+    border-radius: 8px;
+    margin-bottom: 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
-/* Styling for Page and Section Titles */
+
 .pageTitle {
-    font-size: 28px;
+    font-size: 24px;
+    font-weight: 600;
     color: var(--text-primary-color);
-    margin-bottom: 25px;
+    margin: 0;
+    padding-bottom: 24px; 
 }
+
+/* --- Các style còn lại giữ nguyên --- */
 
 .sectionTitle {
-    font-size:20px;
+    font-size: 18px;
     color: var(--section-title-color);
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     border-bottom: 1px solid var(--section-title-border-color);
-    padding-bottom: 5px;
+    padding-bottom: 10px;
+    font-weight: 600;
 }
 
-/* KEY FIX: Restore white background and spacing for content sections */
-.classInfoSection,
-.academicAdvisorSection,
-.studentListSection {
-    background-color: var(--section-background); /* Trả lại nền trắng cho các ô thông tin */
-    padding: 20px;
-    border-radius: 8px;
-    margin-bottom: 20px; /* Tạo khoảng cách xanh lá giữa các ô */
-}
+.infoRow { display: flex; margin-bottom: 12px; }
+.infoLabel { font-weight: 500; color: var(--text-secondary-color); min-width: 150px; }
+.infoValue { color: var(--text-primary-color); }
+.infoColoum { margin-left: -5px; }
 
-/* Styling for info rows inside the sections */
-.infoRow {
-    display: flex;
-    margin-bottom: 10px;
-}
-
-.infoLabel {
-    font-weight: bold;
-    color: var(--text-secondary-color);
-    min-width: 150px;
-}
-
-.infoValue {
-    color: var(--text-primary-color);
-    margin-left: 100px;
-}
-.infoColoum {
-    margin-left: 65px;
-}
-
-/* Styling for advisor cards */
-.advisorCard {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-.advisorAvatar {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-right: 15px;
-    border: 1px solid #eee;
-}
-
-.advisorName {
-    font-weight: 500;
-    color: var(--text-primary-color);
-}
+.advisorCard { display: flex; align-items: center; margin-bottom: 15px; }
+.advisorAvatar { width: 45px; height: 45px; border-radius: 50%; object-fit: cover; margin-right: 15px; }
+.advisorName { font-weight: 500; color: var(--text-primary-color); }

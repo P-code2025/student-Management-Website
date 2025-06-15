@@ -1,36 +1,55 @@
- 
 .sidebar {
-    grid-row: 2 / 3;
-    background-color: var(--sidebar-background); 
-    color: var(--sidebar-text-color); 
-    padding-top: 20px;
-    height: 100%; 
+    /* Bỏ hết thuộc tính grid-row */
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 250px;
+    height: 100vh;
+    z-index: 200;
+    background-color: var(--sidebar-background);
+    color: var(--sidebar-text-color);
+    display: flex; /* Dùng flex để sắp xếp logo và menu bên trong */
+    flex-direction: column;
+    transition: transform 0.3s ease-in-out;
+}
+
+.mainNav {
+    flex-grow: 1; /* Cho phép menu chiếm hết không gian còn lại */
+    overflow-y: auto; /* Tự động có thanh cuộn nếu menu quá dài */
 }
 
 .mainNav ul {
-    padding: 0px;
+    list-style: none;
+    padding: 10px 0;
+    margin: 0;
 }
 
 .mainNav li {
-    margin-bottom: 10px; 
+    margin-bottom: 4px;
 }
 
 .mainNav .navItem {
-    display: flex; 
-    align-items: center; 
-    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    padding: 12px 24px;
     color: var(--sidebar-text-color);
     text-decoration: none;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border-right: 3px solid transparent; /* Chuẩn bị cho trạng thái active */
 }
 
-.mainNav .navItem:hover,
+.mainNav .navItem:hover {
+    color: #fff;
+}
+
 .mainNav .navItem.active {
-    background-color:var(--sidebar-active-background); 
-    border-left: 3px solid var(--sidebar-active-border);
+    background-color: var(--sidebar-active-background);
+    color: #fff;
+    border-right-color: var(--sidebar-active-border); /* Dùng border-right thay vì left */
 }
 
 .navIcon {
-    margin-right: 10px; 
-    font-size: 18px; 
+    margin-right: 12px;
+    font-size: 16px;
+    width: 1em; /* Cố định chiều rộng icon */
 }

@@ -1,79 +1,85 @@
-/* Default styles for larger screens */
+/* src/styles/responsive.css */
+
+/* Mặc định: Ẩn nút menu và lớp phủ */
 #menu-toggle {
     display: none;
 }
 
 #sidebar-overlay {
-    display: none; /* Ẩn overlay mặc định */
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
-    z-index: 199; /* Nằm dưới sidebar nhưng trên main content */
+    z-index: 199;
 }
 
 #sidebar-overlay.visible {
-    display: block; /* Hiện overlay khi sidebar được bật */
+    display: block;
 }
 
 
-/* --- Media Query for tablets and smaller screens (<= 768px) --- */
+/* --- Media Query cho máy tính bảng và màn hình nhỏ hơn (<= 768px) --- */
 @media (max-width: 768px) {
-    .container {
-        grid-template-columns: 1fr;
+    body .container {
+        margin-left: 0;
+    }
+
+    body .header {
+        left: 0;
     }
 
     .sidebar {
-        position: fixed;
-        left: 0;
-        top: 0;
-        height: 100%;
-        width: 250px;
-        z-index: 200;
         transform: translateX(-100%);
-        transition: transform 0.3s ease-in-out;
+        box-shadow: 3px 0 15px rgba(0,0,0,0.2);
     }
 
     .sidebar.visible {
         transform: translateX(0);
-        box-shadow: 3px 0px 15px rgba(0,0,0,0.2);
-    }
-
-    .header, .mainContent {
-        grid-column: 1 / 2;
-    }
-
-    .headerLeft .logo {
-        display: none;
     }
 
     #menu-toggle {
         display: block;
         margin-right: 15px;
     }
-}
-
-/* --- Media Query for mobile phones (<= 480px) --- */
-@media (max-width: 480px) {
-    .mainContent {
-        padding: 15px;
-    }
-
-    .pageTitle {
-        font-size: 22px;
-    }
-
-    .headerRight .userName {
+    
+    .headerLeft .logo {
         display: none;
     }
 
+    /* === SỬA LỖI Ở ĐÂY === */
+    /* Di chuyển quy tắc này từ media query 480px lên đây */
+    /* Để bảng có thể cuộn ngang ngay từ kích thước tablet */
+    .studentListSection {
+        overflow-x: auto;
+    }
+}
+
+/* --- Media Query cho điện thoại di động (<= 480px) --- */
+@media (max-width: 480px) {
+    .mainContent {
+        padding: 75px 15px 15px 15px;
+    }
+    
+    .pageTitle {
+        font-size: 20px;
+        padding-bottom: 15px;
+    }
+    
+    .headerRight .userName {
+        display: none;
+    }
+    
     .coursesContainer {
         grid-template-columns: 1fr;
     }
 
-    .studentListSection {
-        overflow-x: auto;
+    .mainContent > section,
+    .mainContent > div:not(.modal) {
+        padding: 15px;
     }
+    
+    /* Quy tắc .studentListSection đã được chuyển lên trên nên không cần ở đây nữa */
 }

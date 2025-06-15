@@ -4,58 +4,58 @@ html, body {
 }
 
 body {
-    /* Color Scheme Variables */
-    --sidebar-background: #2c3e50;
-    --sidebar-text-color: #ecf0f1;
-    --sidebar-active-background: #246bb1;
-    --sidebar-active-border: #d72ce7;
+    /* Slink PTIT Color Scheme */
+    --sidebar-background: #001529;
+    --sidebar-text-color: rgba(255, 255, 255, 0.65);
+    --sidebar-active-background: #CC0D00;
+    --sidebar-active-border: #CC0D00;
 
-    --main-content-background: #3dca9b;
-    --header-background: #ffffff;
+    --main-content-background: #f0f2f5;
+    --header-background: #001529;
     --section-background: #ffffff;
+    
     --text-primary-color: #333;
     --text-secondary-color: #666;
-    
-    --button-primary-bg: #007bff;
-    --button-primary-hover-bg: #0056b3;
+    --text-on-dark-bg: rgba(255, 255, 255, 0.85);
+
+    --button-primary-bg: #CC0D00;
+    --button-primary-hover-bg: #a60600;
     --button-success-bg: #28a745;
     --button-success-hover-bg: #218838;
-    --button-danger-bg: #dc3545;
-    --button-danger-hover-bg: #c82333;
-    --section-title-color: #b69191;
-    --section-title-border-color: #9e3030;
+    --button-danger-bg: #ff4d4f;
+    --button-danger-hover-bg: #d9363e;
+    
+    --section-title-color: #333;
+    --section-title-border-color: #f0f0f0;
 
     /* Font & Layout Styles */
-    font-family: Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+                'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+                'Noto Color Emoji';
     margin: 0;
     padding: 0;
-    background-color: #f4f7f6;
+    background-color: var(--main-content-background);
     min-height: 100vh;
 }
-/* Dark Theme */
+
+/* Các theme khác giữ nguyên để bạn có thể thử nghiệm */
 body.theme-dark {
     --sidebar-background: #1e272e;
-    --sidebar-text-color: #d2dae2;
-    --sidebar-active-background: #34495e;
-    --sidebar-active-border: #00a8ff;
-    
-    --main-content-background: #2f3640;
     --header-background: #1e272e;
+    --main-content-background: #2f3640;
     --section-background: #353b48;
     --text-primary-color: #f5f6fa;
     --text-secondary-color: #d2dae2;
+    --text-on-dark-bg: #f5f6fa;
+    --section-title-border-color: #4a4a4a;
 }
 
-/* Blue Theme */
 body.theme-blue {
     --sidebar-background: #004a7c;
-    --sidebar-text-color: #ffffff;
-    --sidebar-active-background: #005b9f;
-    --sidebar-active-border: #ffc107;
-    
+    --header-background: #004a7c;
     --main-content-background: #e3f2fd;
-    --header-background: #ffffff;
     --section-background: #ffffff;
     --text-primary-color: #0d47a1;
     --text-secondary-color: #546e7a;
+    --text-on-dark-bg: #ffffff;
 }
