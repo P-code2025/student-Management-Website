@@ -8,3 +8,22 @@
 .newsCardDate { font-size: 12px; color: #999; margin-top: 15px; }
 .deleteNewsButton { position: absolute; top: 15px; right: 15px; background: none; border: none; color: #aaa; font-size: 20px; cursor: pointer; transition: color 0.3s ease; }
 .deleteNewsButton:hover { color: #dc3545; }
+
+/* Thêm vào _news.module.css */
+.newsCardActions {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    display: flex;
+    gap: 10px;
+}
+.actionButton {
+    background: none;
+    border: 1px solid #ccc;
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+}
+.actionButton.edit:hover { background-color: #e9ecef; }
+.actionButton.delete:hover { background-color: #f8d7da; color: #721c24; }

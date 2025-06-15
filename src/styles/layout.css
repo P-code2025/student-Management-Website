@@ -7,7 +7,9 @@
 @import url('./components/_news.module.css');
 @import url('./components/_courses.module.css'); /* ADD THIS LINE */
 @import url('./components/_calendar.module.css'); /* ADD THIS LINE */
-
+@import url('./components/_generic-modal.module.css'); /* ADD THIS LINE */
+@import url('./components/_buttons.module.css');
+@import url('./responsive.css');
 
 .container {
     display: grid;
@@ -18,7 +20,7 @@
 .mainContent {
     grid-row: 2 / 3;
     padding: 20px;
-    background-color: #3dca9b; /* This line provides the green background */
+    background-color: var(--main-content-background); /* This line provides the green background */
     overflow-y: auto;
 }
 /* ... a-z ... the rest of the file remains the same ... a-z ... */
@@ -26,15 +28,15 @@
 /* Styling for Page and Section Titles */
 .pageTitle {
     font-size: 28px;
-    color: #333;
+    color: var(--text-primary-color);
     margin-bottom: 25px;
 }
 
 .sectionTitle {
     font-size:20px;
-    color: #b69191;
+    color: var(--section-title-color);
     margin-bottom: 15px;
-    border-bottom: 1px solid #9e3030;
+    border-bottom: 1px solid var(--section-title-border-color);
     padding-bottom: 5px;
 }
 
@@ -42,7 +44,7 @@
 .classInfoSection,
 .academicAdvisorSection,
 .studentListSection {
-    background-color: #fff; /* Trả lại nền trắng cho các ô thông tin */
+    background-color: var(--section-background); /* Trả lại nền trắng cho các ô thông tin */
     padding: 20px;
     border-radius: 8px;
     margin-bottom: 20px; /* Tạo khoảng cách xanh lá giữa các ô */
@@ -56,12 +58,12 @@
 
 .infoLabel {
     font-weight: bold;
-    color: #666;
+    color: var(--text-secondary-color);
     min-width: 150px;
 }
 
 .infoValue {
-    color: #333;
+    color: var(--text-primary-color);
     margin-left: 100px;
 }
 .infoColoum {
@@ -86,5 +88,12 @@
 
 .advisorName {
     font-weight: 500;
-    color: #333;
+    color: var(--text-primary-color);
+}
+
+/* Add this for better responsive content sections */
+.mainContent > section,
+.mainContent > div {
+    width: 100%;
+    box-sizing: border-box; /* Ensures padding is included in the width, preventing overflow */
 }

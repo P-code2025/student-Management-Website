@@ -1,13 +1,5 @@
-const CALENDAR_EVENTS_KEY = 'calendarEvents';
-
-const getEvents = () => {
-    const eventsJson = localStorage.getItem(CALENDAR_EVENTS_KEY);
-    return eventsJson ? JSON.parse(eventsJson) : [];
-};
-
-const setEvents = (events) => {
-    localStorage.setItem(CALENDAR_EVENTS_KEY, JSON.stringify(events));
-};
+import { getEvents, setEvents } from '../utils/helpers.js';
+import { showGenericModal } from './genericModal.js';
 
 export const initializeCalendar = () => {
     const calendarEl = document.getElementById('calendar');
@@ -15,68 +7,64 @@ export const initializeCalendar = () => {
 
     const calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'timeGridWeek',
-        
         headerToolbar: {
             left: 'prev,next today',
             center: 'title',
             right: 'dayGridMonth,timeGridWeek,timeGridDay'
         },
-
         selectable: true,
         
+        // Thêm sự kiện mới bằng genericModal
         dateClick: function(info) {
-            // 1. Prompt for event title
-            const title = prompt('Nhập tên sự kiện:');
-            if (!title) return;
+            showGenericModal({
+                title: 'Thêm sự kiện mới',
+                confirmText: 'Lưu',
+                cancelText: 'Hủy',
+                bodyHtml: `
+                    <form id="eventForm">
+                        <div class="formGroup"><label for="eventTitleInput">Tên sự kiện:</label><input type="text" id="eventTitleInput" required></div>
+                        <div class="formGroup"><label for="eventStartTimeInput">Thời gian bắt đầu:</label><input type="time" id="eventStartTimeInput" value="09:00" required></div>
+                        <div class="formGroup"><label for="eventEndTimeInput">Thời gian kết thúc:</label><input type="time" id="eventEndTimeInput" value="11:00" required></div>
+                    </form>
+                `,
+                onConfirm: (modalBody) => {
+                    const title = modalBody.querySelector('#eventTitleInput').value.trim();
+                    const startTime = modalBody.querySelector('#eventStartTimeInput').value;
+                    const endTime = modalBody.querySelector('#eventEndTimeInput').value;
 
-            // 2. Prompt for start time
-            const startTimeStr = prompt('Nhập thời gian bắt đầu (ví dụ: 09:30):', '09:00');
-            if (!startTimeStr || !/^\d{2}:\d{2}$/.test(startTimeStr)) {
-                alert('Định dạng thời gian bắt đầu không hợp lệ.');
-                return;
-            }
+                    if (!title) { alert('Tên sự kiện không được để trống.'); return false; }
+                    if (endTime <= startTime) { alert('Thời gian kết thúc phải sau thời gian bắt đầu.'); return false; }
 
-            // 3. ADDED: Prompt for end time
-            const endTimeStr = prompt('Nhập thời gian kết thúc (ví dụ: 11:00):', '11:00');
-            if (!endTimeStr || !/^\d{2}:\d{2}$/.test(endTimeStr)) {
-                alert('Định dạng thời gian kết thúc không hợp lệ.');
-                return;
-            }
-            
-            // ADDED: Validate that end time is after start time
-            if (endTimeStr <= startTimeStr) {
-                alert('Thời gian kết thúc phải sau thời gian bắt đầu.');
-                return;
-            }
-
-            // 4. Combine date and times into full ISO strings
-            const date = info.dateStr.split('T')[0];
-            const startDateTime = `${date}T${startTimeStr}:00`;
-            const endDateTime = `${date}T${endTimeStr}:00`; // ADDED
-
-            const newEvent = {
-                id: Date.now().toString(),
-                title: title,
-                start: startDateTime,
-                end: endDateTime // MODIFIED: Add the end time
-            };
-            
-            let events = getEvents();
-            events.push(newEvent);
-            setEvents(events);
-            calendar.addEvent(newEvent);
+                    const date = info.dateStr.split('T')[0];
+                    const newEvent = { id: Date.now().toString(), title, start: `${date}T${startTime}`, end: `${date}T${endTime}` };
+                    
+                    let events = getEvents();
+                    events.push(newEvent);
+                    setEvents(events);
+                    calendar.addEvent(newEvent);
+                    return true;
+                }
+            });
+        },
+        
+        // Sửa và Xóa sự kiện bằng genericModal
+        eventClick: function(info) {
+            showGenericModal({
+                title: 'Xác nhận xóa',
+                bodyHtml: `<p>Bạn có chắc chắn muốn xóa sự kiện "<strong>${info.event.title}</strong>" không?</p>`,
+                confirmText: 'Xóa',
+                cancelText: 'Hủy',
+                onConfirm: () => {
+                    let events = getEvents();
+                    events = events.filter(event => event.id !== info.event.id);
+                    setEvents(events);
+                    info.event.remove();
+                }
+            });
         },
         
         events: getEvents(),
         editable: true,
-        eventClick: function(info) {
-            if (confirm(`Bạn có muốn xóa sự kiện '${info.event.title}' không?`)) {
-                let events = getEvents();
-                events = events.filter(event => event.id !== info.event.id);
-                setEvents(events);
-                info.event.remove();
-            }
-        }
     });
 
     calendar.render();

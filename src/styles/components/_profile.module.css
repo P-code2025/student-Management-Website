@@ -47,3 +47,15 @@
 .profileInfoValue {
     color: #333;
 }
+
+/* Thêm vào _profile.module.css */
+.profileActions { margin-top: 20px; }
+.profileActions .actionButton { 
+    /* ... copy style từ file news.js nếu muốn ... */
+    background: none;
+    border: 1px solid #ccc;
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+}

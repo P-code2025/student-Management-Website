@@ -1,11 +1,54 @@
- 
 body {
+    /* Color Scheme Variables */
+    --sidebar-background: #2c3e50;
+    --sidebar-text-color: #ecf0f1;
+    --sidebar-active-background: #246bb1;
+    --sidebar-active-border: #d72ce7;
+    
+    --main-content-background: #3dca9b;
+    --header-background: #ffffff;
+    --section-background: #ffffff;
+    --text-primary-color: #333;
+    --text-secondary-color: #666;
+
+    --button-primary-bg: #007bff;
+    --button-primary-hover-bg: #0056b3;
+    --button-success-bg: #28a745;
+    --button-success-hover-bg: #218838;
+
+    /* Font & Layout Styles */
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f4f7f6;
-    display: flex;
     min-height: 100vh;
+    overflow-x: hidden;
 }
 
- 
+/* Dark Theme */
+body.theme-dark {
+    --sidebar-background: #1e272e;
+    --sidebar-text-color: #d2dae2;
+    --sidebar-active-background: #34495e;
+    --sidebar-active-border: #00a8ff;
+    
+    --main-content-background: #2f3640;
+    --header-background: #1e272e;
+    --section-background: #353b48;
+    --text-primary-color: #f5f6fa;
+    --text-secondary-color: #d2dae2;
+}
+
+/* Blue Theme */
+body.theme-blue {
+    --sidebar-background: #004a7c;
+    --sidebar-text-color: #ffffff;
+    --sidebar-active-background: #005b9f;
+    --sidebar-active-border: #ffc107;
+    
+    --main-content-background: #e3f2fd;
+    --header-background: #ffffff;
+    --section-background: #ffffff;
+    --text-primary-color: #0d47a1;
+    --text-secondary-color: #546e7a;
+}
