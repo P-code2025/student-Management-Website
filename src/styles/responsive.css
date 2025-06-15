@@ -3,6 +3,22 @@
     display: none;
 }
 
+#sidebar-overlay {
+    display: none; /* Ẩn overlay mặc định */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 199; /* Nằm dưới sidebar nhưng trên main content */
+}
+
+#sidebar-overlay.visible {
+    display: block; /* Hiện overlay khi sidebar được bật */
+}
+
+
 /* --- Media Query for tablets and smaller screens (<= 768px) --- */
 @media (max-width: 768px) {
     .container {
@@ -54,10 +70,9 @@
     }
 
     .coursesContainer {
-        grid-template-columns: 1fr; /* Hiển thị các kỳ học theo 1 cột */
+        grid-template-columns: 1fr;
     }
 
-    /* Giúp bảng trong Lớp hành chính có thể cuộn ngang */
     .studentListSection {
         overflow-x: auto;
     }

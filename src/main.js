@@ -174,14 +174,20 @@ const handleNavigation = () => {
 const initializeResponsive = () => {
     const menuToggle = document.getElementById('menu-toggle');
     const sidebar = document.querySelector('.sidebar');
-
-    if (menuToggle && sidebar) {
+    const overlay = document.getElementById('sidebar-overlay');
+    if (menuToggle && sidebar && overlay) {
+        const closeSidebar = () => {
+            sidebar.classList.remove('visible');
+            overlay.classList.remove('visible');
+        };
         menuToggle.addEventListener('click', () => {
-            sidebar.classList.toggle('visible');
+            sidebar.classList.add('visible');
+            overlay.classList.add('visible');
         });
+        overlay.addEventListener('click', closeSidebar);
         sidebar.addEventListener('click', (event) => {
-            if (event.target.closest('.navItem') && sidebar.classList.contains('visible')) {
-                sidebar.classList.remove('visible');
+            if (event.target.closest('.navItem')) {
+                closeSidebar();
             }
         });
     }
@@ -229,9 +235,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialize core components
     initializeStudentModal();
-    initializeGenericModal(); // DÒNG NÀY RẤT QUAN TRỌNG VÀ PHẢI CÓ
     handleNavigation();
     initializeResponsive();
+    initializeGenericModal(); // DÒNG NÀY RẤT QUAN TRỌNG VÀ PHẢI CÓ
     initializeTheme(); // ADD THIS LINE
 
     // Load the default page

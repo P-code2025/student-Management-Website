@@ -1,20 +1,29 @@
+html, body {
+    width: 100%;
+    overflow-x: hidden;
+}
+
 body {
     /* Color Scheme Variables */
     --sidebar-background: #2c3e50;
     --sidebar-text-color: #ecf0f1;
     --sidebar-active-background: #246bb1;
     --sidebar-active-border: #d72ce7;
-    
+
     --main-content-background: #3dca9b;
     --header-background: #ffffff;
     --section-background: #ffffff;
     --text-primary-color: #333;
     --text-secondary-color: #666;
-
+    
     --button-primary-bg: #007bff;
     --button-primary-hover-bg: #0056b3;
     --button-success-bg: #28a745;
     --button-success-hover-bg: #218838;
+    --button-danger-bg: #dc3545;
+    --button-danger-hover-bg: #c82333;
+    --section-title-color: #b69191;
+    --section-title-border-color: #9e3030;
 
     /* Font & Layout Styles */
     font-family: Arial, sans-serif;
@@ -22,9 +31,7 @@ body {
     padding: 0;
     background-color: #f4f7f6;
     min-height: 100vh;
-    overflow-x: hidden;
 }
-
 /* Dark Theme */
 body.theme-dark {
     --sidebar-background: #1e272e;
