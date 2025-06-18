@@ -1,61 +1,34 @@
+/* src/styles/global.css */
+
+/* Thêm box-sizing để layout ổn định */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 html, body {
     width: 100%;
     overflow-x: hidden;
-}
-
-body {
-    /* Slink PTIT Color Scheme */
-    --sidebar-background: #001529;
-    --sidebar-text-color: rgba(255, 255, 255, 0.65);
-    --sidebar-active-background: #CC0D00;
-    --sidebar-active-border: #CC0D00;
-
-    --main-content-background: #f0f2f5;
-    --header-background: #001529;
-    --section-background: #ffffff;
-    
-    --text-primary-color: #333;
-    --text-secondary-color: #666;
-    --text-on-dark-bg: rgba(255, 255, 255, 0.85);
-
-    --button-primary-bg: #CC0D00;
-    --button-primary-hover-bg: #a60600;
-    --button-success-bg: #28a745;
-    --button-success-hover-bg: #218838;
-    --button-danger-bg: #ff4d4f;
-    --button-danger-hover-bg: #d9363e;
-    
-    --section-title-color: #333;
-    --section-title-border-color: #f0f0f0;
-
-    /* Font & Layout Styles */
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
-                'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
-                'Noto Color Emoji';
-    margin: 0;
-    padding: 0;
-    background-color: var(--main-content-background);
     min-height: 100vh;
 }
 
-/* Các theme khác giữ nguyên để bạn có thể thử nghiệm */
-body.theme-dark {
-    --sidebar-background: #1e272e;
-    --header-background: #1e272e;
-    --main-content-background: #2f3640;
-    --section-background: #353b48;
-    --text-primary-color: #f5f6fa;
-    --text-secondary-color: #d2dae2;
-    --text-on-dark-bg: #f5f6fa;
-    --section-title-border-color: #4a4a4a;
+body {
+    font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif; /* Font chữ hiện đại hơn */
+    margin: 0;
+    padding: 0;
+    background-color: #F0F2F5; /* Nền tổng thể nhẹ nhàng, hơi xám xanh */
+    color: #344767; /* Màu chữ mặc định tối, dễ đọc */
 }
 
-body.theme-blue {
-    --sidebar-background: #004a7c;
-    --header-background: #004a7c;
-    --main-content-background: #e3f2fd;
-    --section-background: #ffffff;
-    --text-primary-color: #0d47a1;
-    --text-secondary-color: #546e7a;
-    --text-on-dark-bg: #ffffff;
+/* Các style reset khác nếu cần */
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit; /* Kế thừa màu chữ từ cha */
 }

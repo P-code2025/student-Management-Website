@@ -17,17 +17,17 @@
 
 /* Edit Button (Blue) */
 .edit-btn {
-    background-color: var(--button-primary-bg, #007bff);
+    background-color:#007bff;
 }
 
 /* Delete Button (Red) */
 .delete-btn {
-    background-color: var(--button-danger-bg, #dc3545);
+    background-color:#dc3545;
 }
 
 /* Save/Success Button (Green) */
 .save-btn {
-    background-color: var(--button-success-bg, #28a745);
+    background-color: #28a745;
 }
 
 /* Cancel/Secondary Button (Gray) */

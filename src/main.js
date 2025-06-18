@@ -8,7 +8,6 @@ import { initializeCalendar } from './scripts/components/calendar.js';
 import { initializeCreditClassesPage } from './scripts/components/courses.js';
 import { initializeProfilePage } from './scripts/components/profile.js';
 import { initializeGenericModal } from './scripts/components/genericModal.js';
-import { initializeTheme } from './scripts/components/theme-switcher.js';
 
 const mainContent = document.querySelector('.mainContent');
 
@@ -262,7 +261,6 @@ document.addEventListener('DOMContentLoaded', () => {
     handleNavigation();
     initializeResponsive();
     initializeGenericModal();
-    initializeTheme();
 
     // Load the default page
     navigateTo('Trang chủ');

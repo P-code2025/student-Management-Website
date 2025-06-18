@@ -14,10 +14,10 @@
 }
 
 .modalContent {
-    background-color: #fefefe;
+    background-color: white;
     margin: auto; 
     padding: 30px; 
-    border: 1px solid #888; 
+    border: 1px solid #dee2e6; 
     width: 80%; 
     max-width: 500px;
     border-radius: 10px; 
@@ -41,18 +41,19 @@
 #modalTitle {
     text-align: center;
     margin-bottom: 20px; 
-    color: var(--text-primary-color);
+    color: rgb(191, 28, 28);
 }
 
 .formGroup {
     margin-bottom: 15px; 
+    color: #4b0082;
 }
 
 .formGroup label {
     display: block;  
     margin-bottom: 5px; 
     font-weight: 500;  
-    color: var(--text-secondary-color);
+    color: rgb(65, 16, 144);
 
 }
 
@@ -67,7 +68,7 @@
 }
 
 .saveStudentButton {
-    background-color: var(--button-primary-bg); 
+    background-color: #007bff;
     color: white;
     padding: 12px 20px; 
     border: none; 
@@ -80,5 +81,5 @@
 }
 
 .saveStudentButton:hover {
-    background-color: var(--button-primary-hover-bg);
+    background-color: #0056b3;
 }

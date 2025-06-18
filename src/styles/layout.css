@@ -21,7 +21,7 @@
     /* SỬA LỖI Ở ĐÂY */
     box-sizing: border-box; /* Đảm bảo padding không làm tăng kích thước tổng */
     min-height: 100vh;
-    background-color: var(--main-content-background);
+    background-color: #e0e3e8;
     
     /* Dùng padding để đẩy nội dung xuống dưới header cố định */
     /* 84px = 60px (chiều cao header) + 24px (khoảng đệm mong muốn) */
@@ -31,7 +31,7 @@
 /* Các section trong main content */
 .mainContent > section,
 .mainContent > div:not(.modal) {
-    background-color: var(--section-background);
+    background-color: #fff;
     padding: 24px;
     border-radius: 8px;
     margin-bottom: 24px;
@@ -41,7 +41,7 @@
 .pageTitle {
     font-size: 24px;
     font-weight: 600;
-    color: var(--text-primary-color);
+    color: #344767;
     margin: 0;
     padding-bottom: 24px; 
 }
@@ -50,18 +50,45 @@
 
 .sectionTitle {
     font-size: 18px;
-    color: var(--section-title-color);
+    color: 344767;
     margin-bottom: 20px;
-    border-bottom: 1px solid var(--section-title-border-color);
+    border-bottom: 1px solid #e0e3e8;
     padding-bottom: 10px;
     font-weight: 600;
 }
 
-.infoRow { display: flex; margin-bottom: 12px; }
-.infoLabel { font-weight: 500; color: var(--text-secondary-color); min-width: 150px; }
-.infoValue { color: var(--text-primary-color); }
-.infoColoum { margin-left: -5px; }
+.infoRow { 
+    display: flex; 
+    margin-bottom: 12px; 
+}
 
-.advisorCard { display: flex; align-items: center; margin-bottom: 15px; }
-.advisorAvatar { width: 45px; height: 45px; border-radius: 50%; object-fit: cover; margin-right: 15px; }
-.advisorName { font-weight: 500; color: var(--text-primary-color); }
+.infoLabel {
+    font-weight: 500; 
+    color: #6c757d; 
+    min-width: 150px; 
+}
+
+.infoValue { 
+    color: #344767; 
+}
+
+.infoColoum { 
+    margin-left: -5px; 
+}
+
+.advisorCard { 
+    display: flex; 
+    align-items: center; 
+    margin-bottom: 15px; 
+}
+.advisorAvatar { 
+    width: 45px; height: 45px; 
+    border-radius: 50%; 
+    object-fit: cover; 
+    margin-right: 15px; 
+}
+
+.advisorName { 
+    font-weight: 500; 
+    color: #344767; 
+}
