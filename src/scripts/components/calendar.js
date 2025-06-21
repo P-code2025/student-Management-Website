@@ -47,7 +47,7 @@ export const initializeCalendar = () => {
             });
         },
         
-        // Sửa và Xóa sự kiện bằng genericModal
+        // Xóa sự kiện bằng genericModal
         eventClick: function(info) {
             showGenericModal({
                 title: 'Xác nhận xóa',

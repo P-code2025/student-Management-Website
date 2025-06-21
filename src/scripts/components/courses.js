@@ -65,10 +65,4 @@ export const initializeCreditClassesPage = () => {
     if (semesterFilter) {
         semesterFilter.addEventListener('change', renderCourses); // Gọi lại hàm render khi thay đổi
     }
-
-    // Gán sự kiện cho nút tải lại
-    const reloadButton = document.getElementById('reloadButton');
-    if (reloadButton) {
-        reloadButton.addEventListener('click', renderCourses);
-    }
 };
