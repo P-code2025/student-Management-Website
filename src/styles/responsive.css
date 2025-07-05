@@ -1,6 +1,4 @@
-/* src/styles/responsive.css */
 
-/* Mặc định: Ẩn nút menu và lớp phủ */
 #menu-toggle {
     display: none;
 }
@@ -20,8 +18,6 @@
     display: block;
 }
 
-
-/* --- Media Query cho máy tính bảng và màn hình nhỏ hơn (<= 768px) --- */
 @media (max-width: 768px) {
     body .container {
         margin-left: 0;
@@ -48,16 +44,12 @@
     .headerLeft .logo {
         display: none;
     }
-
-    /* === SỬA LỖI Ở ĐÂY === */
-    /* Di chuyển quy tắc này từ media query 480px lên đây */
-    /* Để bảng có thể cuộn ngang ngay từ kích thước tablet */
+    
     .studentListSection {
         overflow-x: auto;
     }
 }
 
-/* --- Media Query cho điện thoại di động (<= 480px) --- */
 @media (max-width: 480px) {
     .mainContent {
         padding: 75px 15px 15px 15px;
@@ -80,6 +72,4 @@
     .mainContent > div:not(.modal) {
         padding: 15px;
     }
-    
-    /* Quy tắc .studentListSection đã được chuyển lên trên nên không cần ở đây nữa */
 }

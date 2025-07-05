@@ -70,7 +70,6 @@ const handleFormSubmit = (event) => {
 export const initializeStudentModal = () => {
     closeButton.addEventListener('click', closeModal);
 
-    // Close modal when clicking outside of it
     window.addEventListener('click', (event) => {
         if (event.target === studentModal) {
             closeModal();

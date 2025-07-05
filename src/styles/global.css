@@ -1,6 +1,4 @@
-/* src/styles/global.css */
 
-/* Thêm box-sizing để layout ổn định */
 *,
 *::before,
 *::after {
@@ -14,11 +12,11 @@ html, body {
 }
 
 body {
-    font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif; /* Font chữ hiện đại hơn */
+    font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif; 
     margin: 0;
     padding: 0;
-    background-color: #F0F2F5; /* Nền tổng thể nhẹ nhàng, hơi xám xanh */
-    color: #344767; /* Màu chữ mặc định tối, dễ đọc */
+    background-color: #F0F2F5;  
+    color: #344767; 
 }
 
 /* Các style reset khác nếu cần */
@@ -30,5 +28,5 @@ ul {
 
 a {
     text-decoration: none;
-    color: inherit; /* Kế thừa màu chữ từ cha */
+    color: inherit;  
 }

@@ -1,4 +1,3 @@
-/* File: src/styles/components/_courses.module.css */
 
 .credit-class-section {
     padding: 24px;
@@ -16,13 +15,12 @@
     overflow-x: auto;
 }
 
-/* QUAN TRỌNG: Sắp xếp bộ lọc và tổng số trên cùng một hàng */
 .table-info {
     display: flex;
-    justify-content: space-between; /* Đẩy 2 item ra 2 phía */
+    justify-content: space-between; 
     align-items: center;
     margin-bottom: 16px;
-    flex-wrap: wrap; /* Cho phép xuống dòng nếu màn hình quá hẹp */
+    flex-wrap: wrap; 
     gap: 16px;
 }
 
@@ -40,7 +38,6 @@
     cursor: pointer;
 }
 
-/* Các style cho bảng giữ nguyên như cũ */
 .course-table {
     width: 100%;
     border-collapse: collapse;

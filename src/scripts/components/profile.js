@@ -3,9 +3,9 @@ import { getLecturerData, setLecturerData } from '../utils/helpers.js';
 let profileContainer;
 
 /**
- * Hiển thị thông tin cá nhân của giảng viên ra màn hình.
- * @param {boolean} isEditing - Chế độ hiển thị: true = sửa, false = xem.
- */
+ *  @param {boolean} isEditing - Chế độ hiển thị: true = sửa, false = xem.
+ */ 
+
 const renderProfile = (isEditing = false) => {
     if (!profileContainer) return;
 
@@ -19,7 +19,7 @@ const renderProfile = (isEditing = false) => {
     let contentHtml;
 
     if (isEditing) {
-        // Chế độ Sửa: Hiển thị form với các ô input
+         
         contentHtml = `
             <img src="${lecturerData.avatar}" alt="User Avatar" class="profileAvatar">
             <div class="profileInfo">
@@ -39,7 +39,7 @@ const renderProfile = (isEditing = false) => {
             </div>
         `;
     } else {
-        // Chế độ Xem: Hiển thị thông tin tĩnh
+         
         contentHtml = `
             <img src="${lecturerData.avatar}" alt="User Avatar" class="profileAvatar">
             <div class="profileInfo">
@@ -60,9 +60,7 @@ const renderProfile = (isEditing = false) => {
     profileContainer.innerHTML = contentHtml;
 };
 
-/**
- * Xử lý sự kiện lưu thông tin sau khi sửa.
- */
+ 
 const handleSave = (event) => {
     event.preventDefault();
     const currentData = getLecturerData();
@@ -74,33 +72,30 @@ const handleSave = (event) => {
         department: document.getElementById('departmentInput').value,
         email: document.getElementById('emailInput').value,
         phone: document.getElementById('phoneInput').value,
-        avatar: currentData.avatar // Giữ lại avatar cũ, không cho sửa ở đây
+        avatar: currentData.avatar  
     };
     setLecturerData(updatedData);
-    renderProfile(false); // Chuyển về chế độ xem
+    renderProfile(false);  
 };
 
-/**
- * Khởi tạo trang cá nhân và gán các sự kiện.
- */
 export const initializeProfilePage = () => {
     profileContainer = document.getElementById('profileContainer');
     
-    // Dùng event delegation để xử lý các click
+    
     profileContainer.addEventListener('click', (event) => {
         if (event.target.classList.contains('edit-btn')) {
-            renderProfile(true); // Chuyển sang chế độ sửa
+            renderProfile(true); 
         }
         if (event.target.classList.contains('cancel-btn')) {
-            renderProfile(false); // Hủy và quay lại chế độ xem
+            renderProfile(false); 
         }
     });
 
     profileContainer.addEventListener('submit', (event) => {
         if (event.target.id === 'profileForm') {
-            handleSave(event); // Lưu thông tin
+            handleSave(event);  
         }
     });
 
-    renderProfile(false); // Hiển thị ban đầu ở chế độ xem
+    renderProfile(false); 
 };

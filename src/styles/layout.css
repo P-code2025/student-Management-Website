@@ -18,17 +18,12 @@
 }
 
 .mainContent {
-    /* SỬA LỖI Ở ĐÂY */
-    box-sizing: border-box; /* Đảm bảo padding không làm tăng kích thước tổng */
+    box-sizing: border-box; 
     min-height: 100vh;
     background-color: #e0e3e8;
-    
-    /* Dùng padding để đẩy nội dung xuống dưới header cố định */
-    /* 84px = 60px (chiều cao header) + 24px (khoảng đệm mong muốn) */
     padding: 84px 24px 24px 24px; 
 }
 
-/* Các section trong main content */
 .mainContent > section,
 .mainContent > div:not(.modal) {
     background-color: #fff;
@@ -46,11 +41,9 @@
     padding-bottom: 24px; 
 }
 
-/* --- Các style còn lại giữ nguyên --- */
-
 .sectionTitle {
     font-size: 18px;
-    color: 344767;
+    color: #344767;
     margin-bottom: 20px;
     border-bottom: 1px solid #e0e3e8;
     padding-bottom: 10px;
@@ -69,11 +62,12 @@
 }
 
 .infoValue { 
-    color: #344767; 
+    color: #344767;
+    padding-left: 50px;
 }
 
 .infoColoum { 
-    margin-left: -5px; 
+    margin-left: -30px; 
 }
 
 .advisorCard { 

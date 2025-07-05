@@ -1,4 +1,4 @@
-// Khai báo các biến ở đây nhưng chưa gán giá trị
+
 let modal, modalTitle, modalBody, modalFooter, closeButton;
 let onConfirmCallback = null;
 
@@ -28,7 +28,6 @@ export const showGenericModal = ({ title, bodyHtml, confirmText = 'Đồng ý', 
 
 const handleConfirm = () => {
     if (onConfirmCallback) {
-        // TRUYỀN THAM SỐ modalBody VÀO HÀM CALLBACK
         const success = onConfirmCallback(modalBody);
         
         if (success === false) {

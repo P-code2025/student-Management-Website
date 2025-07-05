@@ -1,12 +1,6 @@
-/* Custom styles for FullCalendar */
+
 #calendar-container {
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
-}
-
-/* Style for the custom 'Add Event' button */
-.fc-addEventButton-button { /* FullCalendar auto-generates class name like this */
-    background-color: #28a745 !important; /* Use !important to override default styles */
-    border-color: #28a745 !important;
 }

@@ -1,8 +1,6 @@
 import { getStudents, setStudents } from '../utils/helpers.js';
 import { openModal } from './studentModal.js';
-import { showGenericModal } from './genericModal.js'; // IMPORT THE NEW MODAL
-
-// Phiên bản này không cần import modal tùy chỉnh
+import { showGenericModal } from './genericModal.js';  
 
 export const renderStudents = (searchTerm = '') => {
     const studentTableBody = document.getElementById('studentTableBody');
@@ -43,7 +41,6 @@ export const renderStudents = (searchTerm = '') => {
     totalStudentsCount.textContent = students.length;
 };
 
-// MODIFIED: This function now uses the generic modal
 const handleDeleteStudent = (id) => {
     const studentToDelete = getStudents().find(s => s.id === id);
     if (!studentToDelete) return;

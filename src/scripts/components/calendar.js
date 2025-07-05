@@ -14,7 +14,7 @@ export const initializeCalendar = () => {
         },
         selectable: true,
         
-        // Thêm sự kiện mới bằng genericModal
+    
         dateClick: function(info) {
             showGenericModal({
                 title: 'Thêm sự kiện mới',
@@ -22,9 +22,18 @@ export const initializeCalendar = () => {
                 cancelText: 'Hủy',
                 bodyHtml: `
                     <form id="eventForm">
-                        <div class="formGroup"><label for="eventTitleInput">Tên sự kiện:</label><input type="text" id="eventTitleInput" required></div>
-                        <div class="formGroup"><label for="eventStartTimeInput">Thời gian bắt đầu:</label><input type="time" id="eventStartTimeInput" value="09:00" required></div>
-                        <div class="formGroup"><label for="eventEndTimeInput">Thời gian kết thúc:</label><input type="time" id="eventEndTimeInput" value="11:00" required></div>
+                        <div class="formGroup">
+                            <label for="eventTitleInput">Tên sự kiện:</label>
+                            <input type="text" id="eventTitleInput" required>
+                        </div>
+                        <div class="formGroup">
+                            <label for="eventStartTimeInput">Thời gian bắt đầu:</label>
+                            <input type="time" id="eventStartTimeInput" value="09:00" required>
+                        </div>
+                        <div class="formGroup">
+                            <label for="eventEndTimeInput">Thời gian kết thúc:</label>
+                            <input type="time" id="eventEndTimeInput" value="11:00" required>
+                        </div>
                     </form>
                 `,
                 onConfirm: (modalBody) => {
@@ -47,7 +56,7 @@ export const initializeCalendar = () => {
             });
         },
         
-        // Xóa sự kiện bằng genericModal
+       
         eventClick: function(info) {
             showGenericModal({
                 title: 'Xác nhận xóa',

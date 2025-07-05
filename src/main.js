@@ -1,4 +1,3 @@
-// File: src/main.js (Phiên bản đầy đủ và đã sửa lỗi)
 
 import { getStudents, setStudents, getCourses, setCourses, getLecturerData, setLecturerData } from './scripts/utils/helpers.js';
 import { initializeStudentModal } from './scripts/components/studentModal.js';
@@ -10,8 +9,6 @@ import { initializeProfilePage } from './scripts/components/profile.js';
 import { initializeGenericModal } from './scripts/components/genericModal.js';
 
 const mainContent = document.querySelector('.mainContent');
-
-// --- CÁC HÀM TẠO HTML (CÓ THỂ BẠN ĐÃ VÔ TÌNH XÓA MẤT PHẦN NÀY) ---
 
 const getHomePageHTML = () => {
     return `
@@ -147,8 +144,6 @@ const getAdminClassHTML = () => {
     `;
 };
 
-
-// --- ROUTER & APP LOGIC ---
 const navigateTo = (page) => {
     mainContent.innerHTML = '';
     switch (page) {
@@ -219,7 +214,7 @@ const initializeResponsive = () => {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Seed initial data if necessary
+
     if (!getStudents() || getStudents().length === 0) {
         const initialStudents = [
             { id: 1, avatar: '../../public/images/avatar1.jpg', studentCode: 'B24DCCC11', fullName: 'Mông Đức Hiếu', gender: 'Nam', role: 'Thành viên' },
@@ -256,12 +251,9 @@ document.addEventListener('DOMContentLoaded', () => {
         setLecturerData(initialLecturerData);
     }
 
-    // Initialize core components
     initializeStudentModal();
     handleNavigation();
     initializeResponsive();
     initializeGenericModal();
-
-    // Load the default page
     navigateTo('Trang chủ');
 });

@@ -1,5 +1,4 @@
 .sidebar {
-    /* Bỏ hết thuộc tính grid-row */
     position: fixed;
     left: 0;
     top: 0;
@@ -8,14 +7,14 @@
     z-index: 200;
     background-color: #1764b1; 
     color: #ECF0F1;
-    display: flex; /* Dùng flex để sắp xếp logo và menu bên trong */
+    display: flex; 
     flex-direction: column;
     transition: transform 0.3s ease-in-out;
 }
 
 .mainNav {
-    flex-grow: 1; /* Cho phép menu chiếm hết không gian còn lại */
-    overflow-y: auto; /* Tự động có thanh cuộn nếu menu quá dài */
+    flex-grow: 1; 
+    overflow-y: auto;
 }
 
 .mainNav ul {
@@ -35,7 +34,7 @@
     color: ECF0F1;
     text-decoration: none;
     transition: background-color 0.3s ease, color 0.3s ease;
-    border-right: 3px solid transparent; /* Chuẩn bị cho trạng thái active */
+    border-right: 3px solid transparent;
 }
 
 .mainNav .navItem:hover {
@@ -46,13 +45,13 @@
 .mainNav .navItem.active {
     background-color: #1ABC9C;
     color: #FFFFFF;
-    border-left-color: #4CAF50; /* Dùng border-right thay vì left */
-    font-weight: 600; /* Làm chữ đậm hơn khi active */
+    border-left-color: #4CAF50; 
+    font-weight: 600; 
 }
 
 .navIcon {
     margin-right: 12px;
     font-size: 16px;
-    width: 1em; /* Cố định chiều rộng icon */
+    width: 1em; 
     color: #ECF0F1;
 }
