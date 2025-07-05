@@ -6,7 +6,8 @@ export const initializeCalendar = () => {
     if (!calendarEl) return;
 
     const calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'timeGridWeek',
+        initialView: 'dayGridMonth',
+        height: 'auto',
         headerToolbar: {
             left: 'prev,next today',
             center: 'title',
