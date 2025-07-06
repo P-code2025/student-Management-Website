@@ -26,3 +26,50 @@
 * **Quan trọng:** Một **Backend API** đang chạy và có thể truy cập được (mặc định là `http://localhost:3000`).
 
 ## Cấu trúc File
+system-management-frontend/
+├── public/
+│   ├── css/            # CSS thuần cho các phần chung
+│   └── images/         # Ảnh và tài nguyên tĩnh
+│
+├── src/
+│   ├── main.js         # Điểm khởi chạy chính của ứng dụng Frontend
+│   ├── pages/
+│   │   └── index.html  # Trang HTML chính của ứng dụng
+│   ├── scripts/
+│   │   ├── components/ # Các module JS cho từng phần giao diện
+│   │   │   ├── calendar.js
+│   │   │   ├── courses.js
+│   │   │   ├── genericModal.js
+│   │   │   ├── news.js
+│   │   │   ├── profile.js
+│   │   │   ├── studentModal.js
+│   │   │   └── studentTable.js
+│   │   └── utils/      # Các hàm tiện ích dùng chung (API calls)
+│   │       └── helpers.js
+│   └── styles/         # Các file CSS
+│       ├── components/ # CSS Modules cho từng component
+│       ├── global.css  # CSS toàn cục
+│       ├── layout.css  # CSS bố cục chính
+│       └── responsive.css # CSS cho responsive design
+## Cài đặt và Chạy ứng dụng
+
+1.  **Clone repository:**
+    Nếu bạn chưa có mã nguồn, hãy clone nó về máy:
+    ```bash
+    git clone <URL_repository_của_bạn>
+    cd system-management-frontend
+    ```
+    *(Lưu ý: Đảm bảo thư mục frontend này ngang hàng với thư mục backend nếu bạn đang phát triển cục bộ.)*
+
+2.  **Đảm bảo Backend đang chạy:**
+    Frontend này yêu cầu một Backend API đang hoạt động. Hãy chắc chắn rằng bạn đã khởi chạy backend project (mặc định trên `http://localhost:3000`).
+
+3.  **Mở Frontend:**
+    Vì đây là một ứng dụng thuần HTML/CSS/JS, bạn không cần cài đặt Node.js hay các dependency khác để chạy nó.
+    * **Cách đơn giản nhất:** Mở file `src/pages/index.html` trực tiếp trong trình duyệt web của bạn.
+    * **Cách được khuyến nghị (để tránh lỗi CORS và đường dẫn):** Sử dụng một HTTP server cục bộ. Nếu bạn dùng VS Code, bạn có thể cài đặt extension "Live Server" và click chuột phải vào `src/pages/index.html`, chọn "Open with Live Server". Điều này sẽ khởi chạy một server (ví dụ: `http://127.0.0.1:5500`) để phục vụ các file.
+
+4.  **Cấu hình API Endpoint:**
+    * Mặc định, frontend sẽ cố gắng kết nối đến backend API tại `http://localhost:3000/api`.
+    * Nếu backend của bạn chạy ở một địa chỉ hoặc cổng khác (ví dụ: khi triển khai lên máy chủ cloud), bạn cần chỉnh sửa biến `API_BASE_URL` trong file `src/scripts/utils/helpers.js` cho phù hợp.
+
