@@ -1,5 +1,11 @@
+// File: src/main.js (Phiên bản đã sửa để dùng API)
 
-import { getStudents, setStudents, getCourses, setCourses, getLecturerData, setLecturerData } from './scripts/utils/helpers.js';
+// Bỏ các import helpers cũ nếu không dùng
+// import { getStudents, setStudents, getCourses, setCourses, getLecturerData, setLecturerData } from './scripts/utils/helpers.js';
+
+// Import các hàm API mới từ helpers
+import { getStudents, getCourses, getLecturerData, getNews, getEvents } from './scripts/utils/helpers.js';
+
 import { initializeStudentModal } from './scripts/components/studentModal.js';
 import { renderStudents, initializeStudentTableEvents } from './scripts/components/studentTable.js';
 import { initializeNewsPage } from './scripts/components/news.js';
@@ -9,6 +15,8 @@ import { initializeProfilePage } from './scripts/components/profile.js';
 import { initializeGenericModal } from './scripts/components/genericModal.js';
 
 const mainContent = document.querySelector('.mainContent');
+
+// --- CÁC HÀM TẠO HTML (Giữ nguyên) ---
 
 const getHomePageHTML = () => {
     return `
@@ -53,8 +61,9 @@ const getCreditClassesPageHTML = () => {
             <div class="table-container">
                 <div class="table-info">
                     <select id="semesterFilter" class="semester-filter">
-                        <option value="1">Học kỳ 1 năm học 2024-2025</option>
-                        <option value="2" selected>Học kỳ 2 năm học 2024-2025</option>
+                        <option value="HK1">Học kỳ 1</option>
+                        <option value="HK2" selected>Học kỳ 2</option>
+                        <option value="Hè">Học kỳ Hè</option>
                     </select>
                     <span class="total-count-display">Tổng số: <span id="totalCoursesCount">0</span></span>
                 </div>
@@ -62,12 +71,12 @@ const getCreditClassesPageHTML = () => {
                     <thead>
                         <tr>
                             <th>TT</th>
-                            <th>Tên lớp học</th>
-                            <th>Mã HP</th>
-                            <th>Tên học phần</th>
+                            <th>Mã môn</th>
+                            <th>Tên môn</th>
                             <th>STC</th>
-                            <th>Giảng viên</th>
-                            <th>Lịch học</th>
+                            <th>Năm học</th>
+                            <th>Học kỳ</th>
+                            <th>Khoa</th>
                         </tr>
                     </thead>
                     <tbody id="courseTableBody"></tbody>
@@ -144,6 +153,8 @@ const getAdminClassHTML = () => {
     `;
 };
 
+
+// --- ROUTER & APP LOGIC ---
 const navigateTo = (page) => {
     mainContent.innerHTML = '';
     switch (page) {
@@ -152,23 +163,23 @@ const navigateTo = (page) => {
             break;
         case 'Tin tức':
             mainContent.innerHTML = getNewsPageHTML();
-            initializeNewsPage();
+            initializeNewsPage(); // Sẽ fetch dữ liệu từ API
             break;
         case 'Thông tin cá nhân':
             mainContent.innerHTML = getProfilePageHTML();
-            initializeProfilePage();
+            initializeProfilePage(); // Sẽ fetch dữ liệu từ API
             break;
         case 'Lịch':
             mainContent.innerHTML = getCalendarPageHTML();
-            initializeCalendar();
+            initializeCalendar(); // Sẽ fetch dữ liệu từ API
             break;
         case 'Lớp tín chỉ':
             mainContent.innerHTML = getCreditClassesPageHTML();
-            initializeCreditClassesPage();
+            initializeCreditClassesPage(); // Sẽ fetch dữ liệu từ API
             break;
         case 'Lớp hành chính':
             mainContent.innerHTML = getAdminClassHTML();
-            renderStudents();
+            renderStudents(); // Sẽ fetch dữ liệu từ API
             initializeStudentTableEvents();
             break;
         default:
@@ -213,47 +224,16 @@ const initializeResponsive = () => {
     }
 };
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => { // Thêm async ở đây
+    // Bỏ qua seeding dữ liệu localStorage cũ
+    // Dữ liệu sẽ được load từ API khi các trang được điều hướng đến lần đầu.
 
-    if (!getStudents() || getStudents().length === 0) {
-        const initialStudents = [
-            { id: 1, avatar: '../../public/images/avatar1.jpg', studentCode: 'B24DCCC11', fullName: 'Mông Đức Hiếu', gender: 'Nam', role: 'Thành viên' },
-            { id: 2, avatar: '../../public/images/avatar2.jpg', studentCode: 'B24DCCC01', fullName: 'Nguyễn Đức Dũng', gender: 'Nam', role: 'Thành viên' },
-            { id: 3, avatar: '../../public/images/avatar3.jpg', studentCode: 'B24DCCC37', fullName: 'Nguyễn Cao Quảng', gender: 'Nam', role: 'Thành viên' },
-            { id: 4, avatar: '../../public/images/avatar4.jpg', studentCode: 'B24DCCC13', fullName: 'Văn Phương Nam', gender: 'Nam', role: 'Thành viên' },
-            { id: 5, avatar: '../../public/images/avatar5.jpg', studentCode: 'B24DCCC03', fullName: 'Đỗ Công An', gender: 'Nam', role: 'Thành viên' }
-        ];
-        setStudents(initialStudents);
-    }
-
-    if (!getCourses() || getCourses().length === 0) {
-        const initialCourses = [
-            { id: 1, name: 'Giải tích 1', credits: 3, semester: 1 },
-            { id: 2, name: 'Lập trình C++', credits: 3, semester: 1 },
-            { id: 3, name: 'Tiếng Anh A1', credits: 4, semester: 1 },
-            { id: 4, name: 'Triết học Mác-Lênin', credits: 3, semester: 1 },
-            { id: 5, name: 'Pháp luật đại cương', credits: 2, semester: 1 },
-            { id: 6, name: 'Giải tích 2', credits: 3, semester: 2 },
-            { id: 7, name: 'Cấu trúc dữ liệu và giải thuật', credits: 3, semester: 2 },
-            { id: 8, 'name': 'Tiếng Anh A2', credits: 4, semester: 2 },
-            { id: 9, name: 'Kinh tế chính trị', credits: 2, semester: 2 },
-            { id: 10, name: 'Vật lý đại cương', credits: 3, semester: 2 }
-        ];
-        setCourses(initialCourses);
-    }
-
-    if (!getLecturerData()) {
-        const initialLecturerData = {
-            fullName: 'Nguyễn Minh Chiến', employeeId: 'GV001', dateOfBirth: '10-10-1985',
-            gender: 'Nam', department: 'Công nghệ thông tin', email: 'chiendeptrai@slink.edu.vn',
-            phone: '0987-654-321', avatar: '../../public/images/nguyen-minh-chien.jpg'
-        };
-        setLecturerData(initialLecturerData);
-    }
-
+    // Initialize core components
     initializeStudentModal();
     handleNavigation();
     initializeResponsive();
     initializeGenericModal();
+
+    // Load the default page
     navigateTo('Trang chủ');
 });

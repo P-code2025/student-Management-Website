@@ -1,20 +1,22 @@
-import { getStudents, setStudents } from '../utils/helpers.js';
+import { getStudents, deleteStudent } from '../utils/helpers.js';
 import { openModal } from './studentModal.js';
-import { showGenericModal } from './genericModal.js';  
+import { showGenericModal } from './genericModal.js';
 
-export const renderStudents = (searchTerm = '') => {
+export const renderStudents = async (searchTerm = '') => {
     const studentTableBody = document.getElementById('studentTableBody');
     const totalStudentsCount = document.getElementById('totalStudentsCount');
     if (!studentTableBody || !totalStudentsCount) {
         console.error("Student table elements not found in the DOM!");
         return;
     }
-    let students = getStudents();
+
+    let students = await getStudents(); // Lấy tất cả sinh viên từ API
+
     const lowerCaseSearchTerm = searchTerm.toLowerCase().trim();
     if (lowerCaseSearchTerm) {
         students = students.filter(student =>
-            student.studentCode.toLowerCase().includes(lowerCaseSearchTerm) ||
-            student.fullName.toLowerCase().includes(lowerCaseSearchTerm)
+            student.MaSinhVien.toLowerCase().includes(lowerCaseSearchTerm) ||
+            student.HoTen.toLowerCase().includes(lowerCaseSearchTerm)
         );
     }
     studentTableBody.innerHTML = '';
@@ -26,14 +28,14 @@ export const renderStudents = (searchTerm = '') => {
             const row = studentTableBody.insertRow();
             row.innerHTML = `
                 <td>${index + 1}</td>
-                <td><img src="${student.avatar}" alt="Avatar" class="studentAvatarTable"></td>
-                <td>${student.studentCode}</td>
-                <td>${student.fullName}</td>
-                <td>${student.gender}</td>
-                <td>${student.role}</td>
+                <td><img src="${student.AnhDaiDien || '../../public/images/default-avatar.jpg'}" alt="Avatar" class="studentAvatarTable"></td>
+                <td>${student.MaSinhVien}</td>
+                <td>${student.HoTen}</td>
+                <td>${student.GioiTinh}</td>
+                <td>${student.ChucVu}</td>
                 <td class="actionButtons">
-                    <button class="editButton" data-id="${student.id}">Sửa</button>
-                    <button class="deleteButton" data-id="${student.id}">Xóa</button>
+                    <button class="editButton" data-id="${student.MaSinhVien}">Sửa</button>
+                    <button class="deleteButton" data-id="${student.MaSinhVien}">Xóa</button>
                 </td>
             `;
         });
@@ -41,21 +43,22 @@ export const renderStudents = (searchTerm = '') => {
     totalStudentsCount.textContent = students.length;
 };
 
-const handleDeleteStudent = (id) => {
-    const studentToDelete = getStudents().find(s => s.id === id);
-    if (!studentToDelete) return;
-
+const handleDeleteStudent = (maSinhVien) => {
     showGenericModal({
         title: 'Xác nhận xóa',
-        bodyHtml: `<p>Bạn có chắc chắn muốn xóa sinh viên <strong>${studentToDelete.fullName}</strong> không? Hành động này không thể hoàn tác.</p>`,
+        bodyHtml: `<p>Bạn có chắc chắn muốn xóa sinh viên có mã <strong>${maSinhVien}</strong> không? Hành động này không thể hoàn tác.</p>`,
         confirmText: 'Xóa',
         cancelText: 'Hủy',
-        onConfirm: () => {
-            let students = getStudents();
-            students = students.filter(student => student.id !== id);
-            setStudents(students);
-            const searchInput = document.getElementById('searchInput');
-            renderStudents(searchInput ? searchInput.value : '');
+        onConfirm: async () => {
+            const success = await deleteStudent(maSinhVien);
+            if (success) {
+                alert('Xóa sinh viên thành công!');
+                const searchInput = document.getElementById('searchInput');
+                renderStudents(searchInput ? searchInput.value : '');
+            } else {
+                alert('Có lỗi xảy ra khi xóa sinh viên.');
+            }
+            return success;
         }
     });
 };
@@ -71,17 +74,17 @@ export const initializeStudentTableEvents = () => {
     addNewStudentButton.addEventListener('click', () => {
         openModal('add');
     });
-    studentTableBody.addEventListener('click', (event) => {
+    studentTableBody.addEventListener('click', async (event) => { // Thêm async
         const target = event.target;
-        const studentId = parseInt(target.dataset.id, 10);
+        const maSinhVien = target.dataset.id; // Lấy mã sinh viên
         if (target.classList.contains('editButton')) {
-            const students = getStudents();
-            const studentToEdit = students.find(student => student.id === studentId);
+            const students = await getStudents(); // Lấy lại danh sách để tìm đối tượng
+            const studentToEdit = students.find(student => student.MaSinhVien === maSinhVien);
             if (studentToEdit) {
                 openModal('edit', studentToEdit);
             }
         } else if (target.classList.contains('deleteButton')) {
-            handleDeleteStudent(studentId);
+            handleDeleteStudent(maSinhVien);
         }
     });
     searchButton.addEventListener('click', () => {
