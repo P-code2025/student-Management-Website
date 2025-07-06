@@ -25,32 +25,7 @@
 * Một trình duyệt web hiện đại (Chrome, Firefox, Edge, Safari, v.v.).
 * **Quan trọng:** Một **Backend API** đang chạy và có thể truy cập được (mặc định là `http://localhost:3000`).
 
-## Cấu trúc File
-system-management-frontend/
-├── public/
-│   ├── css/            # CSS thuần cho các phần chung
-│   └── images/         # Ảnh và tài nguyên tĩnh
-│
-├── src/
-│   ├── main.js         # Điểm khởi chạy chính của ứng dụng Frontend
-│   ├── pages/
-│   │   └── index.html  # Trang HTML chính của ứng dụng
-│   ├── scripts/
-│   │   ├── components/ # Các module JS cho từng phần giao diện
-│   │   │   ├── calendar.js
-│   │   │   ├── courses.js
-│   │   │   ├── genericModal.js
-│   │   │   ├── news.js
-│   │   │   ├── profile.js
-│   │   │   ├── studentModal.js
-│   │   │   └── studentTable.js
-│   │   └── utils/      # Các hàm tiện ích dùng chung (API calls)
-│   │       └── helpers.js
-│   └── styles/         # Các file CSS
-│       ├── components/ # CSS Modules cho từng component
-│       ├── global.css  # CSS toàn cục
-│       ├── layout.css  # CSS bố cục chính
-│       └── responsive.css # CSS cho responsive design
+
 ## Cài đặt và Chạy ứng dụng
 
 1.  **Clone repository:**
